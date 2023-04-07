@@ -26,7 +26,7 @@ bool scheduleHelp(
 	const size_t dailyNeed, 
 	const size_t maxShifts, 
 	vector<int> rtn,
-	Worker_T day, 
+	size_t day, 
 	Worker_T worker)
 {
 	if(day == sched.size()) return true;

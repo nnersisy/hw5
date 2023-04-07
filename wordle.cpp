@@ -19,16 +19,10 @@ void wordleHelp(
     std::queue<char> float_,
     const std::set<std::string>& dict,
     set<string>& rtn,
-    size_t num,
-    int dash)
+    size_t num)
 {
     if(in.size() == 0) return;
 
-    dash = 0;
-    for(unsigned int i = 0; i < in.size(); i++)
-    {
-        if(in[i] == '-') dash++;
-    }
 
     if(num == in.size())
     {
@@ -47,7 +41,7 @@ void wordleHelp(
                 while (i <= 'z') 
                 {
                     in[num] = i;
-                    wordleHelp(in, float_, dict, rtn, num+1, dash);
+                    wordleHelp(in, float_, dict, rtn, num+1);
                     i++;
                 }
                 in[num] = '-';
@@ -57,13 +51,13 @@ void wordleHelp(
             {
                 in[num] = float_.front();
                 float_.pop();
-                wordleHelp(in, float_, dict, rtn, num+1, dash);
+                wordleHelp(in, float_, dict, rtn, num+1);
                 float_.push(in[num]);
                 in[num] = '-';
             }
         }
     }
-    else wordleHelp(in, float_, dict, rtn, num+1, dash);
+    else wordleHelp(in, float_, dict, rtn, num+1);
 
 
 
@@ -98,7 +92,7 @@ std::set<std::string> wordle(
     }
 
 
-    wordleHelp(in_, float_, dict, rtn, 0, dash);
+    wordleHelp(in_, float_, dict, rtn, 0);
 
     return rtn;
 }
